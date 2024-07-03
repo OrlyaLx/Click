@@ -1,0 +1,22 @@
+
+class ClickCounter:
+    def __init__(self):
+        self.left_clicks = 0
+        self.right_clicks = 0
+
+    def on_click(self, x, y, button, pressed):
+        if pressed:
+            if button == mouse.Button.left:
+                self.left_clicks += 1
+                print(f"Click STANGA: {self.left_clicks}")
+            elif button == mouse.Button.right:
+                self.right_clicks += 1
+                print(f"Click DREAPTA: {self.right_clicks}")
+
+    def start(self):
+        with mouse.Listener(on_click=self.on_click) as listener:
+            listener.join()
+
+if __name__ == "__main__":
+    click_counter = ClickCounter()
+    click_counter.start()
